@@ -77,6 +77,7 @@ class MyPIXIApp {
     private readonly expItems: PIXI.Sprite[] = []
     private nextCreateExpItemTiming: number = -1
     private score: number = 0
+    private planeLevelTexture: PIXI.Texture[] = []
 
 
     constructor() {
@@ -86,14 +87,18 @@ class MyPIXIApp {
             child.width = 512
             child.height = 768
         })
-        this.plane = this.myPIXI.createSpriteAndAddToStage(MyPIXI.createSpriteFromImage('assets/plane.png'), (child) => {
-            child.width = 117
-            child.height = 93
+
+        this.planeLevelTexture.push(PIXI.Texture.fromImage('assets/plane.png'))
+        this.planeLevelTexture.push(PIXI.Texture.fromImage('assets/plane3.png'))
+        this.planeLevelTexture.push(PIXI.Texture.fromImage('assets/plane4.png'))
+        this.plane = this.myPIXI.createSpriteAndAddToStage(new PIXI.Sprite(this.planeLevelTexture[0]), (child) => {
             child.anchor.set(0.5, 0.5)
 
             child.x = this.bg.width / 2
             child.y = this.bg.height / 2
         })
+        this.setPlaneToLevel1()
+
         this.pauseButton = this.myPIXI.createSpriteAndAddToStage(MyPIXI.createSpriteFromImage('assets/zanting.png'), (child) => {
             child.width = 50
             child.height = 51
@@ -262,7 +267,19 @@ class MyPIXIApp {
                     this.expItems[i].destroy()
                     this.expItems.splice(i, 1)
                     i -= 1
-                    if (this.bulletFireSpeedLevel < this.bulletFireSpeed.length - 1) this.bulletFireSpeedLevel += 1
+                    if (this.bulletFireSpeedLevel < this.bulletFireSpeed.length - 1) {
+                        this.bulletFireSpeedLevel += 1
+
+
+                        // 按照子弹等级改变战机样式
+                        if (this.bulletFireSpeedLevel == 0) {
+                            this.setPlaneToLevel1()
+                        } else if (this.bulletFireSpeedLevel >= this.bulletFireSpeed.length / 2 && this.bulletFireSpeedLevel < this.bulletFireSpeed.length - 1) {
+                            this.setPlaneToLevel2()
+                        } else if (this.bulletFireSpeedLevel == this.bulletFireSpeed.length - 1) {
+                            this.setPlaneToLevel3()
+                        }
+                    }
                 }
             }
 
@@ -294,6 +311,27 @@ class MyPIXIApp {
         this.unPauseButton.on('click', () => {
             this.unPauseGame()
         })
+    }
+
+    private setPlaneToLevel1() {
+        this.plane.texture = this.planeLevelTexture[0]
+
+        this.plane.width = 117
+        this.plane.height = 93
+    }
+
+    private setPlaneToLevel2() {
+        this.plane.texture = this.planeLevelTexture[1]
+
+        this.plane.width = 110
+        this.plane.height = 85
+    }
+
+    private setPlaneToLevel3() {
+        this.plane.texture = this.planeLevelTexture[2]
+
+        this.plane.width = 114
+        this.plane.height = 92
     }
 
     private flashScoreText() {
