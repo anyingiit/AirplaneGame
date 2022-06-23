@@ -78,6 +78,7 @@ class MyPIXIApp {
     private nextCreateExpItemTiming: number = -1
     private score: number = 0
     private planeLevelTexture: PIXI.Texture[] = []
+    private readonly boomAnimationImagePaths: string[] = []
 
 
     constructor() {
@@ -98,6 +99,10 @@ class MyPIXIApp {
             child.y = this.bg.height / 2
         })
         this.setPlaneToLevel1()
+
+        for (let i = 1; i <= 7; i++) {
+            this.boomAnimationImagePaths.push('assets/bao0' + i + '.png')
+        }
 
         this.pauseButton = this.myPIXI.createSpriteAndAddToStage(MyPIXI.createSpriteFromImage('assets/zanting.png'), (child) => {
             child.width = 50
@@ -232,11 +237,31 @@ class MyPIXIApp {
                         this.score += 100
                         this.flashScoreText()
 
+                        const enemyPlaneX = this.enemyPlanes[j].x
+                        const enemyPlaneY = this.enemyPlanes[j].y
+
                         this.enemyPlanes[j].destroy()
                         this.enemyPlanes.splice(j, 1)
                         this.planeBullets[i].destroy()
                         this.planeBullets.splice(i, 1)
                         i -= 1;
+
+                        const boomAnimation = this.myPIXI.createSpriteAndAddToStage(this.myPIXI.createSpriteAndAddToStage(PIXI.extras.AnimatedSprite.fromImages(this.boomAnimationImagePaths), (child) => {
+                            child.width = 96
+                            child.height = 96
+
+                            child.anchor.set(0.5, 0.5)
+
+                            child.loop = false
+                            child.animationSpeed = 0.3
+
+                            child.x = enemyPlaneX
+                            child.y = enemyPlaneY
+                        }))
+                        boomAnimation.onComplete = () => {
+                            this.myPIXI.removeChildForStage(boomAnimation)
+                        }
+                        boomAnimation.play()
                         break
                     }
                 }
