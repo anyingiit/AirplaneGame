@@ -18,3 +18,6 @@ yarn install
 yarn build
 yarn start
 ```
+
+> 如果想要更新位于Github的GitHub Page, 需要在打包完成后将`dist`文件夹**改名为**`docs`.
+> 未来可以通过更改输出目录或者配置`Github Actions`解决这个问题
