@@ -1,23 +1,64 @@
+<!-- Source: Best-README-Template BLANK_README (Unlicense) — https://github.com/othneildrew/Best-README-Template -->
+<a id="readme-top"></a>
+
 # AirplaneGame
 
-## dev
+Airplane game has no README describing its purpose; its manifest (package.json, tsconfig.json, webpack.config.js, yarn.lock) marks it as a Node.js, TypeScript and Webpack codebase, built with TypeScript.
 
-```shell
-yarn install
-yarn dev
+[![CI](https://github.com/anyingiit/AirplaneGame/actions/workflows/ci.yml/badge.svg)](https://github.com/anyingiit/AirplaneGame/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/anyingiit/AirplaneGame)](LICENSE)
+
+[Report a bug](https://github.com/anyingiit/AirplaneGame/issues/new?template=bug_report.yml) · [Request a feature](https://github.com/anyingiit/AirplaneGame/issues/new?template=feature_request.yml)
+
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
+## About The Project
+
+Airplane game has no README describing its purpose; its manifest (package.json, tsconfig.json, webpack.config.js, yarn.lock) marks it as a Node.js, TypeScript and Webpack codebase, built with TypeScript.
+
+See the [open issues](https://github.com/anyingiit/AirplaneGame/issues) for planned features and known issues.
+
+## Getting Started
+
+### Prerequisites
+
+- Git
+
+### Installation
+
+```sh
+git clone https://github.com/anyingiit/AirplaneGame.git
+cd AirplaneGame
 ```
 
-> Tip
->
-> 如果你碰到了问题，请将路由导航至 `/webpack-dev-server` 将会为你展示服务文件的位置。例如： `http://localhost:9000/webpack-dev-server`。
+## Usage
 
-## build && run
-
-```shell
-yarn install
-yarn build
-yarn start
+```sh
+AirplaneGame --help
 ```
 
-> 如果想要更新位于Github的GitHub Page, 需要在打包完成后将`dist`文件夹**改名为**`docs`.
-> 未来可以通过更改输出目录或者配置`Github Actions`解决这个问题
+## Contributing
+
+Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) for how to open an issue or a pull request, and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for the standards expected of everyone taking part.
+
+Please do not report security issues in public issues or pull requests. [SECURITY.md](SECURITY.md) explains how to report them privately.
+
+## License
+
+Distributed under the MIT License. See [LICENSE](LICENSE) for details.
+
+## Contact
+
+Project link: [https://github.com/anyingiit/AirplaneGame](https://github.com/anyingiit/AirplaneGame)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
